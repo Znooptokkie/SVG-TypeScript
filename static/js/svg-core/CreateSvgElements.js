@@ -15,7 +15,7 @@ export class CreateSvgElements extends SVG {
     // -- **Creates the corresponding SVG element using the correct namespace**
     // --
     // -- return: The created SVG element or null if creation fails
-    createSVG_NS(elementName) {
+    static createSVG_NS(elementName) {
         if (!elementName) {
             console.error("No element found!");
             return null;
@@ -28,7 +28,7 @@ export class CreateSvgElements extends SVG {
     // -- **Appends the provided <element> as a child of that container**
     // --
     // -- return: The appended SVG element or null if the container does not exist
-    appendChildToSVG(element) {
+    appendSVGToHTMLId(element) {
         if (!element) {
             console.error("There is no (SVGElement) available!");
             return null;
@@ -47,7 +47,7 @@ export class CreateSvgElements extends SVG {
     // -- **Adds all provided attributes to the element**
     // --
     // -- return: The created SVG element or null if creation fails
-    createSVGElement(elementName, attributes) {
+    static createSVGElement(elementName, attributes) {
         const element = this.createSVG_NS(elementName);
         if (!element) {
             console.error("There is no (elementName) available!");

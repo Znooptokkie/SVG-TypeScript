@@ -1,4 +1,4 @@
-import { SVG } from "./SvgElement.js"
+import { SVG } from "./SvgElement.js";
 
 // -- svgHTMLId: The ID of the main <svg> HTML element
 // -- svgAttributes: A key:value object containing attributes to apply to the SVG element
@@ -27,12 +27,12 @@ export class CreateSvgElements extends SVG
     // -- **Creates the corresponding SVG element using the correct namespace**
     // --
     // -- return: The created SVG element or null if creation fails
-    private createSVG_NS<K extends keyof SVGElementTagNameMap>(elementName: K): SVGElementTagNameMap[K] | null
+    private static createSVG_NS<K extends keyof SVGElementTagNameMap>(elementName: K): SVGElementTagNameMap[K] | null
     {
         if (!elementName)
         {
-            console.error("No element found!")
-            return null
+            console.error("No element found!");
+            return null;
         }
 
         return document.createElementNS(SVG.getSVG_NS(), elementName) as unknown as SVGElementTagNameMap[K]
@@ -43,19 +43,19 @@ export class CreateSvgElements extends SVG
     // -- **Appends the provided <element> as a child of that container**
     // --
     // -- return: The appended SVG element or null if the container does not exist
-    public appendChildToSVG(element: SVGElement): SVGElement | null
+    public appendSVGToHTMLId(element: SVGElement): SVGElement | null
     {
         if (!element)
         {
-            console.error("There is no (SVGElement) available!")
-            return null
+            console.error("There is no (SVGElement) available!");
+            return null;
         }
 
         const svgContainer = this.getSvgHTMLIdElement()
         
         if (svgContainer)
         {
-            return svgContainer.appendChild(element)
+            return svgContainer.appendChild(element);
         }
 
         return null
@@ -69,24 +69,24 @@ export class CreateSvgElements extends SVG
     // -- **Adds all provided attributes to the element**
     // --
     // -- return: The created SVG element or null if creation fails
-    public createSVGElement<K extends keyof SVGElementTagNameMap>(elementName: K, attributes?: Record<string, string | number>): SVGElementTagNameMap[K] | null
+    public static createSVGElement<K extends keyof SVGElementTagNameMap>(elementName: K, attributes?: Record<string, string | number>): SVGElementTagNameMap[K] | null
     {
-        const element = this.createSVG_NS(elementName)
+        const element = this.createSVG_NS(elementName);
 
         if (!element)
         {
-            console.error("There is no (elementName) available!")
-            return null
+            console.error("There is no (elementName) available!");
+            return null;
         }
 
         if (attributes)
         {
             for (const [key, value] of Object.entries(attributes))
             {
-                element.setAttribute(key, String(value))
+                element.setAttribute(key, String(value));
             }
         }
 
-        return element
+        return element;
     }
 } 
