@@ -16,5 +16,8 @@ export class SVGClipPathElement {
         }
         return this.parentSvg.appendSVGToHTMLId(this.clipPathSvgElement);
     }
+    get element() {
+        return this.clipPathSvgElement;
+    }
 }
 //# sourceMappingURL=ClipPath.js.map

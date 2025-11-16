@@ -21,5 +21,8 @@ export class SVGGroup {
         }
         return this.groupSvgElement;
     }
+    get element() {
+        return this.groupSvgElement;
+    }
 }
 //# sourceMappingURL=Group.js.map

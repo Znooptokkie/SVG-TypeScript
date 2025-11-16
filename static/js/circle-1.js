@@ -1,6 +1,6 @@
 import { CreateSvgElements } from "./svg-core/CreateSvgElements.js";
 import { SVGDefsElement } from "./svg-elements/Defs.js";
-import { SVGFilterElement } from "./svg-elements/Filter.js";
+import { CustomSVGFilter } from "./svg-elements/Filter.js";
 import { SVGFeDropShadow } from "./svg-elements/FeDropShadow.js";
 import { SVGClipPathElement } from "./svg-elements/ClipPath.js";
 import { SVGCircle } from "./svg-elements/Circle.js";
@@ -10,7 +10,7 @@ import { SVGPath } from "./svg-elements/Path.js";
 import { SVGImage } from "./svg-elements/Image.js";
 import { CalcCircleProperties } from "./svg-calculations/CalcCircleProperties.js";
 function firstFilterElement() {
-    const filterShadow = new SVGFilterElement(defsElement, {
+    const filterShadow = new CustomSVGFilter(defsElement, {
         id: "shadow",
         x: "-50%",
         y: "-50%",
@@ -27,7 +27,7 @@ function firstFilterElement() {
     feDropShadowFirstFilter.createFeDropShadowElement();
 }
 function secondFilterElement() {
-    const filterBottomShadow = new SVGFilterElement(defsElement, {
+    const filterBottomShadow = new CustomSVGFilter(defsElement, {
         id: "bottom-shadow",
         x: "-50%",
         y: "-50%",
@@ -369,6 +369,11 @@ const radiusSecondRow = 435;
 const circumferenceMiddleBorder = CalcCircleProperties.calcCircleCircumference(radiusSecondRow);
 const radiusSecondRowBG = 465;
 const circumferenceMiddleBorderBG = CalcCircleProperties.calcCircleCircumference(radiusSecondRowBG);
+// ///////////////////  //
+//                      //
+//     VARIABLES        //
+//                      //
+// ///////////////////  //
 const greenBGColor = "rgba(12, 30, 19, 1)";
 // ///////////////////  //
 //                      //

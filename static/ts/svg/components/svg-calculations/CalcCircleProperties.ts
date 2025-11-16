@@ -9,7 +9,7 @@ export class CalcCircleProperties
     public static calcStrokeDasharray(dasharrayElement: number, circumference: number): string
     {
         const availableRoom = (circumference - dasharrayElement);
-        console.log(`${dasharrayElement} ${availableRoom}`);
+        // console.log(`${dasharrayElement} ${availableRoom}`);
         return `${dasharrayElement} ${availableRoom}`;
     }
 

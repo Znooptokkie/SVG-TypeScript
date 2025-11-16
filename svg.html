@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module" src="./static/js/circle-1.js" defer></script>
+    <!-- <script type="module" src="./static/js/circle-1.js" defer></script> -->
+     <script type="module" src="./static/js/main.js"></script>
     <style>
         body
         {
             background-color: rgb(4, 9, 21);
             width: 100%;
-        }
-
-        #proto-1
-        {
-            max-width: 40rem;
+            display: flex;
+            justify-content: center;
         }
 
         @keyframes rotate 
@@ -29,34 +27,28 @@
             }
         }
 
-        @keyframes rotate-hollow 
-        {
-            from 
-            {
-                transform: rotate(225deg);
-            }
-            to 
-            {
-                transform: rotate(585deg);
-            }
-        }
 
-        .white-hollow-deco-second 
+        .thin-inner-border-group
         {
             transform-origin: center;
-            animation: rotate-hollow 80s linear infinite;
+            animation: rotate 20s linear infinite;
         }
 
-        .white-hollow-deco-first 
+        .big-inner-border-group
         {
             transform-origin: center;
-            animation: rotate 80s linear infinite;
+            animation: rotate 120s linear infinite;
+        }
+
+        .background-group
+        {
+            transform-origin: center;
+            animation: rotate 200s linear infinite reverse
         }
     </style>
 </head>
 <body>
     <div>
-        <h1>CIRCLE 1</h1>
         <svg id="proto-1">
 
         </svg>

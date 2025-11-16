@@ -1,25 +1,42 @@
+// svg-elements/Path.ts
 import { CreateSvgElements } from "../svg-core/CreateSvgElements.js";
 import { SVGGroup } from "./Group.js";
 export class SVGPath {
-    parentSvgElement;
+    parent;
     attributes;
-    constructor(parentSvgElement, attributes) {
-        this.parentSvgElement = parentSvgElement;
+    pathElement = null;
+    constructor(
+    // Accepteer: wrapper (CreateSvgElements, SVGGroup) OF DOM-element (zoals <clipPath>)
+    parent, attributes) {
+        this.parent = parent;
         this.attributes = attributes;
     }
     createPathElement() {
-        const pathElement = CreateSvgElements.createSVGElement("path", this.attributes);
-        if (!pathElement || !this.parentSvgElement) {
-            console.error("Can not create <path> SVG Element");
+        this.pathElement = CreateSvgElements.createSVGElement("path", this.attributes);
+        if (!this.pathElement || !this.parent) {
+            console.error("Cannot create <path> SVG element or parent missing.");
             return null;
         }
-        if (this.parentSvgElement instanceof CreateSvgElements) {
-            this.parentSvgElement.appendSVGToHTMLId(pathElement);
+        // 1. Als parent een wrapper is → gebruik appendSVGToHTMLId
+        if (this.parent instanceof CreateSvgElements) {
+            this.parent.appendSVGToHTMLId(this.pathElement);
         }
-        else if (this.parentSvgElement instanceof SVGGroup) {
-            const groupElement = this.parentSvgElement.createGroupSVGElement();
-            groupElement?.appendChild(pathElement);
+        // 2. Als parent een SVGGroup is → gebruik .element
+        else if (this.parent instanceof SVGGroup) {
+            const groupEl = this.parent.element;
+            if (groupEl) {
+                groupEl.appendChild(this.pathElement);
+            }
         }
+        // 3. Als parent een echt DOM-element is (bijv. <clipPath>) → appendChild
+        else if (this.parent instanceof SVGElement) {
+            this.parent.appendChild(this.pathElement);
+        }
+        return this.pathElement;
+    }
+    // Correct type: SVGPathElement
+    get element() {
+        return this.pathElement;
     }
 }
 //# sourceMappingURL=Path.js.map
