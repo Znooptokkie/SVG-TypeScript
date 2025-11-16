@@ -1,4 +1,5 @@
 import { CreateSVG } from "./SVGCreate.js";
+import { SVGCircleAttributes } from "../../../types/svg/attributes.js";
 
 export class SVGFactory<T extends Record<string, string | number> = Record<string, string | number>>
 {
@@ -39,11 +40,11 @@ export class SVGFactory<T extends Record<string, string | number> = Record<strin
 
             if (this.parentSVG instanceof CreateSVG) 
             {   
-                parent = this.parentSVG.SVGElement;
+                parent = this.parentSVG.getSVGElementRoot;
             } 
             else if (this.parentSVG instanceof SVGFactory) 
             {
-                parent = this.parentSVG.SVGElementGetter;
+                parent = this.parentSVG.getSVGElement;
             } 
             else if (this.parentSVG instanceof SVGElement) 
             {
@@ -63,7 +64,7 @@ export class SVGFactory<T extends Record<string, string | number> = Record<strin
     }
 
     // -- **Getter for the created SVG element**
-    public get SVGElementGetter(): SVGElement | null
+    public get getSVGElement(): SVGElement | null
     {
         return this.SVGElement as SVGElement | null;
     }

@@ -29,10 +29,10 @@ export class SVGFactory {
             }
             let parent = null;
             if (this.parentSVG instanceof CreateSVG) {
-                parent = this.parentSVG.SVGElement;
+                parent = this.parentSVG.getSVGElementRoot;
             }
             else if (this.parentSVG instanceof SVGFactory) {
-                parent = this.parentSVG.SVGElementGetter;
+                parent = this.parentSVG.getSVGElement;
             }
             else if (this.parentSVG instanceof SVGElement) {
                 parent = this.parentSVG;
@@ -46,7 +46,7 @@ export class SVGFactory {
         return this.SVGElement;
     }
     // -- **Getter for the created SVG element**
-    get SVGElementGetter() {
+    get getSVGElement() {
         return this.SVGElement;
     }
 }
